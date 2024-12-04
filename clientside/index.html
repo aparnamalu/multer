@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Information Form</title>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+    <div class="container">
+        <a href="./pages/Users.html">Get Users</a>
+        <h2>User Information Form</h2>
+        <form id="frm" enctype="multipart/form-data" >
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" >
+
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" >
+
+            <label for="image">Profile Image:</label>
+            <input type="file" id="image" name="file">
+
+            <label for="phone">Phone:</label>
+            <input type="tel" id="phone" name="phone" >
+
+            <button type="submit">Submit</button>
+        </form>
+        <div class="footer">
+            &copy; 2024 Your Company
+        </div>
+    </div>
+    <script src="./js/index.js"></script>
+</body>
+</html>

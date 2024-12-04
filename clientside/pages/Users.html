@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.card {
+    width: 250px; /* Adjust the width as needed */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+}
+
+.image {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure image fills the container */
+}
+.button {
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.button1 {background-color: #04AA6D;} /* Green */
+.button2 {background-color: #f28015;} /* Blue */
+</style>
+</head>
+<body>
+    <div class="cards" id="cards">
+       
+    </div>
+    <script>
+        async function getUser(){
+    const res=await fetch("http://localhost:3000/api/getuser");
+    console.log(res);
+    const users=await res.json();
+    str=``
+    users.map((user)=>{
+        console.log(user.image.filename);
+
+        str+=`
+         <div class="card">
+            <div class="image">
+                <img src="http://localhost:3000/api/image/${user.image.filename}"alt="">
+            </div>
+            <h3>${user.username}</h3>
+            <p>${user.email}</p>
+             <button class="button button1">EDIT</button>
+             <button class="button button2" onclick="deleteUser('${user._id}')">DELETE</button>
+        </div>
+        
+        `
+    })
+        document.getElementById("cards").innerHTML=str
+    }
+getUser()
+
+async function deleteUser(id){
+    const res=await fetch(`http://localhost:3000/api/delete/${id}`,{method:"DELETE"})
+    console.log(res);
+    getUser();
+}
+
+    </script>
+</body>
+</html>
